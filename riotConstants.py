@@ -14,3 +14,4 @@ BASE_URL_MATCH_DATA = "https://na1.api.riotgames.com/lol/match/v3/matches/"
 
 BASE_URL_MATCH = "https://na1.api.riotgames.com/lol/match/v3/matches/"
 
+CHAMPION_DATA = "http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json"

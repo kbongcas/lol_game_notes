@@ -11,10 +11,10 @@ note = Note.Note(game, 'ya i did good')
 
 test(game, note)
 
-accountId = requestHandler.getAccountID('oldgreendragon')
+accountId = requestHandler.getAccountID('kevinismyname')
 print('My account id is' + str(accountId))
 gameId = requestHandler.getRecentGameID(accountId)
 playerStats = requestHandler.getPlayerStats(gameId, accountId)
-print(requestHandler.getGameStatsFormGame(playerStats))
+print(requestHandler.getGameStatsFormGame(playerStats, accountId, gameId))
 
 

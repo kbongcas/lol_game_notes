@@ -4,6 +4,6 @@ Take notes after a game of league of legends.
 
 ## TODO
 
-* [ ] get attributes for Game object From riot api
+* [ ] change methods to get game methods in a particular way --12/19
 
 * note to self: Keep it simple!
