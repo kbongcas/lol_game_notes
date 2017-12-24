@@ -87,6 +87,49 @@ def getChampNameFromGame(gameId,accountId):
                 return n['name']
     return None 
 
+def getLaneFromGame(gameId,accountId):
+
+    gameStats_json = getMatchData(gameId) 
+    participantId = None 
+    
+    participantsId_array = gameStats_json['participantIdentities']
+
+    ## make into own method 
+    for p in participantsId_array:
+        
+        tempId = p['player']['accountId']
+
+        if tempId == accountId:
+            participantId = p['participantId']
+
+    if participantId is not None:
+        plarticipants = gameStats_json['participants']
+        lane = plarticipants[participantId-1]['timeline']['lane']
+        return lane
+    return None
+
+def getGameCs(gameId,accountId):
+    gameStats_json = getMatchData(gameId) 
+    participantId = None 
+    
+    participantsId_array = gameStats_json['participantIdentities']
+
+    ## make into own method 
+    for p in participantsId_array:
+        
+        tempId = p['player']['accountId']
+
+        if tempId == accountId:
+            participantId = p['participantId']
+
+    if participantId is not None:
+        plarticipants = gameStats_json['participants']
+        total_min = plarticipants[participantId-1]['stats']['totalMinionsKilled']
+        nut_min = plarticipants[participantId-1]['stats']['neutralMinionsKilled']
+        return total_min + nut_min
+
+    return None
+
 
 
 
@@ -94,10 +137,10 @@ def getGameStatsFormGame(playerStats, accountId, gameId):
 ## using strings to test
 
     win = "win: " + str(playerStats['win'])
-    roleplayed = "roleplayed: " + 'need to implement'
-    champlayed = "champlayed: " + str(getChampNameFromGame(gameId, accountId))
+    roleplayed = "roleplayed: " +  str(getLaneFromGame(gameId, accountId))
+    champlayed = "champplayed: " + str(getChampNameFromGame(gameId, accountId))
     kda = "kda: " + str(playerStats['kills']) + "/" + str(playerStats['deaths']) + "/" + str(playerStats['assists']) 
-    cs = "cs: " + 'need to implement'
+    cs = "cs: " + str(getGameCs(gameId, accountId))
     goldCount = "goldCount: " + str(playerStats['goldEarned'])
 
     return win +"\n" + roleplayed +"\n" + champlayed +"\n" +  win +"\n" + kda + "\n" + cs + "\n" + goldCount
